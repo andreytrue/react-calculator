@@ -1,0 +1,23 @@
+.input {
+  height: 3em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: flex-end;
+  align-items: flex-end;
+  font-weight: 300;
+  font-size: 2em;
+  background-color: #000000;
+  color: #94b6a7;
+  padding: 0.5em;
+}
+
+.input--value {
+  font-size: 1em;
+}
+
+.input--result {
+  font-weight: 500;
+  font-size: 1.2em;
+  color: #ffffff;
+}
