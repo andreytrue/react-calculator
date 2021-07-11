@@ -8,8 +8,9 @@
   background-color: #c0f5eb;
   color: #416468;
   flex: 1;
-  border: 2px solid hsl(0, 0%, 100%);
+  outline: 2px solid #ffffff;
   cursor: pointer;
+  flex-grow: 1;
 }
 
 .button--outcome {
