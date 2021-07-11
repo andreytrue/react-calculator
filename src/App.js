@@ -3,44 +3,67 @@ import './css/App.css';
 import Button from './components/button/button';
 import Input from './components/input/input';
 import ClearButton from './components/clear-button/clear-button';
+import { INPUT_MAX_LENGTH } from './components/const/const';
 import { evaluate } from 'mathjs';
 
-class App extends Component {
+import { observer } from 'mobx-react';
+import { action, makeObservable, observable } from 'mobx';
+
+export const App = observer(class extends Component {
+  input = '';
+  result = '';
+
   constructor(props) {
     super(props);
+    makeObservable(this, {
+      input: observable,
+      result: observable,
+      addToInput: action,
+      handleEqual: action,
+      handlerPercent: action,
+      handlerDelete: action,
+      handlerClear: action,
+    });
 
-    this.state = {
-      input: '',
-      result: ''
-    };
+    this.input = this.props.initialInput ?? '';
+    this.result = this.props.initialInput ?? '';
   }
 
   addToInput = value => {
-      this.setState({ input: this.state.input + value });
+    if (this.input.length < INPUT_MAX_LENGTH) {
+      this.input = this.input + value;
+    }
   };
 
   handleEqual = () => {
-    this.setState({ input: '', result: evaluate(this.state.input) });
+    this.result = evaluate(this.input);
+    this.input = '';
   };
 
   handlerPercent = () => {
-    this.setState({ input: '', result:  this.state.input * 0.01 });
+    this.result = this.input * 0.01;
+    this.input = '';
   };
 
   handlerDelete = () => {
-    this.setState({ input: '' });
+    this.input = '';
   };
+
+  handlerClear = () => {
+    this.input = '';
+    this.result = '';
+  }
 
   render() {
     return (
       <div className="App">
         <div className="calc-wrapper">
-          <Input input={this.state.input} result={this.state.result}></Input>
+          <Input input={this.input} result={this.result}></Input>
           <div className="row">
-            <ClearButton handleClear={() => this.setState({input: '', result: ''})}>AC</ClearButton>
+            <ClearButton handleClear={() => this.handlerClear()}>AC</ClearButton>
             <Button handleClick={() => this.handlerPercent()}>%</Button>
             <Button handleClick={() => this.handlerDelete()}>DEL</Button>
-            <Button handleClick={this.addToInput}>÷</Button>
+            <Button handleClick={this.addToInput}>/</Button>
           </div>
           <div className="row">
             <Button handleClick={this.addToInput}>7</Button>
@@ -69,6 +92,6 @@ class App extends Component {
       </div>
     )
   }
-}
+});
 
 export default App;
