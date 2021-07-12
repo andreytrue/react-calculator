@@ -16,33 +16,33 @@ const App = observer(() => {
       <div className="calc-wrapper">
         <Input input={store.input} result={store.result}></Input>
         <div className="row">
-          <ClearButton handleClear={() => store.handlerClear()}>AC</ClearButton>
-          <Button handleClick={() => store.handlerPercent()}>%</Button>
-          <Button handleClick={() => store.handlerDelete()}>DEL</Button>
-          <Button handleClick={store.addToInput}>/</Button>
+          <ClearButton onClick={() => store.handleOnClear()}>AC</ClearButton>
+          <Button onClick={() => store.handleOnPercent()}>%</Button>
+          <Button onClick={() => store.handleOnDelete()}>DEL</Button>
+          <Button onClick={store.addToInput}>÷</Button>
         </div>
         <div className="row">
-          <Button handleClick={store.addToInput}>7</Button>
-          <Button handleClick={store.addToInput}>8</Button>
-          <Button handleClick={store.addToInput}>9</Button>
-          <Button handleClick={store.addToInput}>*</Button>
+          <Button onClick={store.addToInput}>7</Button>
+          <Button onClick={store.addToInput}>8</Button>
+          <Button onClick={store.addToInput}>9</Button>
+          <Button onClick={store.addToInput}>*</Button>
         </div>
         <div className="row">
-          <Button handleClick={store.addToInput}>4</Button>
-          <Button handleClick={store.addToInput}>5</Button>
-          <Button handleClick={store.addToInput}>6</Button>
-          <Button handleClick={store.addToInput}>+</Button>
+          <Button onClick={store.addToInput}>4</Button>
+          <Button onClick={store.addToInput}>5</Button>
+          <Button onClick={store.addToInput}>6</Button>
+          <Button onClick={store.addToInput}>+</Button>
         </div>
         <div className="row">
-          <Button handleClick={store.addToInput}>1</Button>
-          <Button handleClick={store.addToInput}>2</Button>
-          <Button handleClick={store.addToInput}>3</Button>
-          <Button handleClick={store.addToInput}>-</Button>
+          <Button onClick={store.addToInput}>1</Button>
+          <Button onClick={store.addToInput}>2</Button>
+          <Button onClick={store.addToInput}>3</Button>
+          <Button onClick={store.addToInput}>-</Button>
         </div>
         <div className="row">
-          <Button handleClick={store.addToInput}>.</Button>
-          <Button handleClick={store.addToInput}>0</Button>
-          <Button handleClick={() => store.handlerEqual()}>=</Button>
+          <Button onClick={store.addToInput}>.</Button>
+          <Button onClick={store.addToInput}>0</Button>
+          <Button onClick={() => store.handleOnEqual()}>=</Button>
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import { makeObservable, observable, action } from "mobx";
-import { INPUT_MAX_LENGTH } from '../components/const/const';
+import { INPUT_MAX_LENGTH, DIVISION_SYMBOL } from '../components/const/const';
 import { evaluate } from 'mathjs';
 
 export function calculatorStoreFunction() {
@@ -11,18 +11,26 @@ export function calculatorStoreFunction() {
         this.input = this.input + value;
       }
     },
-    handlerEqual() {
+    handleOnEqual() {
+      if (this.input.includes(DIVISION_SYMBOL.OBELUS)) {
+        this.input =
+          this.input.replaceAll(
+            DIVISION_SYMBOL.OBELUS, 
+            DIVISION_SYMBOL.SLASH
+          );
+      }
+
       this.result = evaluate(this.input);
       this.input = '';
     },
-    handlerPercent() {
+    handleOnPercent() {
       this.result = this.input * 0.01;
       this.input = '';
     },
-    handlerDelete() {
+    handleOnDelete() {
       this.input = '';
     },
-    handlerClear() {
+    handleOnClear() {
       this.input = '';
       this.result = '';
     },
@@ -30,9 +38,9 @@ export function calculatorStoreFunction() {
     input: observable,
     result: observable,
     addToInput: action.bound,
-    handlerEqual: action.bound,
-    handlerPercent: action.bound,
-    handlerDelete: action.bound,
-    handlerClear: action.bound,
+    handleOnEqual: action.bound,
+    handleOnPercent: action.bound,
+    handleOnDelete: action.bound,
+    handleOnClear: action.bound,
   });
 }

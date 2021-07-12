@@ -11,7 +11,7 @@ function Button(props) {
       className={`button-wrapper ${
         isOutcome(props.children) ?  'button--outcome' : ''
       }`}
-      onClick={() => props.handleClick(props.children)}
+      onClick={() => props.onClick(props.children)}
     >
       {props.children}
     </div>
