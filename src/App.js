@@ -2,7 +2,6 @@ import React from 'react';
 import './css/App.css';
 import Button from './components/button/button';
 import Input from './components/input/input';
-import ClearButton from './components/clear-button/clear-button';
 
 import { observer } from 'mobx-react';
 
@@ -16,7 +15,7 @@ const App = observer(() => {
       <div className="calc-wrapper">
         <Input input={store.input} result={store.result}></Input>
         <div className="row">
-          <ClearButton onClick={() => store.handleOnClear()}>AC</ClearButton>
+          <Button onClick={() => store.handleOnClear()}>AC</Button>
           <Button onClick={() => store.handleOnPercent()}>%</Button>
           <Button onClick={() => store.handleOnDelete()}>DEL</Button>
           <Button onClick={store.addToInput}>÷</Button>
